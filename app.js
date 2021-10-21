@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const port = process.env.PORT || 3000 ;
+const DB = 'mongodb://omairar:omair12345@cluster0-shard-00-00.zz4sr.mongodb.net:27017,cluster0-shard-00-01.zz4sr.mongodb.net:27017,cluster0-shard-00-02.zz4sr.mongodb.net:27017/cannabyAPI?ssl=true&replicaSet=atlas-fsubdw-shard-0&authSource=admin&retryWrites=true&w=majority';
+
 
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -29,7 +32,7 @@ app.get('/',(req,res)=>{
 
 
 
-mongoose.connect(process.env.CONNECTION_STRING, {
+mongoose.connect(DB, {
     useNewUrlParser: true, 
   
     useUnifiedTopology: true,
@@ -43,6 +46,6 @@ mongoose.connect(process.env.CONNECTION_STRING, {
 })
 
 
-app.listen(3000, ()=>{
+app.listen(port, ()=>{
     console.log("server is runnin on port 3000")
 })
